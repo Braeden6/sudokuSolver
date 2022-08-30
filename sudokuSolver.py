@@ -71,7 +71,7 @@ def solveBoard(board, searchType):
     return bst[len(bst) - 1]
     
 AMOUNT = 10
-data = pd.read_csv("sudoku.csv", nrows=AMOUNT)
+data = pd.read_csv("data/sudoku.csv", nrows=AMOUNT)
 
 
 start_time = time.time()
