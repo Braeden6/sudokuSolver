@@ -36,7 +36,10 @@ def checkArray(arr):
 
 def checkBoard(board):
     for i in range(9):
-        if not (checkArray(board[:,i]) and checkArray(board[i,:])):
+        lowBound = 3*int(i/3)
+        upperBound = 3 + 3*int(i/3)
+        section = np.concatenate((board[(i%3)*3][lowBound:upperBound], board[(i%3)*3+1][lowBound:upperBound], board[(i%3)*3+2][lowBound:upperBound]))
+        if not (checkArray(board[:,i]) and checkArray(board[i,:]) and checkArray(section)):
             return False
     return True
 
@@ -70,9 +73,7 @@ def solveBoard(board, searchType):
 AMOUNT = 10
 data = pd.read_csv("sudoku.csv", nrows=AMOUNT)
 
-solverAnswer = solveBoard(convertStringToBoard(data["puzzle"][9]), 1)
 
-'''
 start_time = time.time()
 differentSolutions = 0
 
@@ -91,7 +92,6 @@ start_time = time.time()
 differentSolutions = 0
 
 for i in range(AMOUNT):
-    print(i)
     solverAnswer = solveBoard(convertStringToBoard(data["puzzle"][i]), 1)
     if not np.array_equal(solverAnswer, convertStringToBoard(data["solution"][i])):
         differentSolutions += 1
@@ -100,21 +100,4 @@ end_time = time.time()
 
 print("Breadth First Search Solver:" )
 print("Average Completion Time:",(end_time - start_time)/AMOUNT)
-print("Amount of different solutions:", differentSolutions)'''
-
-
-
-
-
-'''
-trainX = np.array(data["puzzle"][0:1000])
-trainX = [[int(a) for a in val] for val in trainX]
-trainY = np.array(data["solution"][0:1000])
-trainY = [[int(a) for a in val] for val in trainY]
-
-testX = np.array(data["puzzle"][1000:2000])
-testX = [[int(a) for a in val] for val in testX]
-testY = np.array(data["solution"][1000:2000])
-testY = [[int(a) for a in val] for val in testY]
-
-clf = MLPClassifier(solver='lbfgs', hidden_layer_sizes=(81,20,81), max_iter=1000)'''
+print("Amount of different solutions:", differentSolutions)
