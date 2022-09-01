@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>526</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QWidget" name="widget" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QWidget" name="widget_32" native="true">
+         <layout class="QGridLayout" name="gridLayout_4">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="3">
+           <widget class="QWidget" name="widget_12" native="true">
+            <layout class="QGridLayout" name="gridLayout_2">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QWidget" name="square03" native="true"/>
+             </item>
+             <item row="0" column="2">
+              <widget class="QWidget" name="square05" native="true"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QWidget" name="square04" native="true"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QWidget" name="square13" native="true"/>
+             </item>
+             <item row="1" column="1">
+              <widget class="QWidget" name="square14" native="true"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QWidget" name="square23" native="true"/>
+             </item>
+             <item row="1" column="2">
+              <widget class="QWidget" name="square15" native="true"/>
+             </item>
+             <item row="2" column="1">
+              <widget class="QWidget" name="square24" native="true"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QWidget" name="square25" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QWidget" name="widget_22" native="true">
+            <layout class="QGridLayout" name="gridLayout_3">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QWidget" name="square06" native="true"/>
+             </item>
+             <item row="0" column="2">
+              <widget class="QWidget" name="square08" native="true"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QWidget" name="square07" native="true"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QWidget" name="square16" native="true"/>
+             </item>
+             <item row="1" column="1">
+              <widget class="QWidget" name="square17" native="true"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QWidget" name="square26" native="true"/>
+             </item>
+             <item row="1" column="2">
+              <widget class="QWidget" name="square18" native="true"/>
+             </item>
+             <item row="2" column="1">
+              <widget class="QWidget" name="square27" native="true"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QWidget" name="square28" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="Line" name="line_2">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="lineWidth">
+             <number>5</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="Line" name="line_3">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="lineWidth">
+             <number>5</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QWidget" name="widget_95" native="true">
+            <layout class="QGridLayout" name="gridLayout_13">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="1" column="1">
+              <widget class="QWidget" name="square11" native="true"/>
+             </item>
+             <item row="1" column="2">
+              <widget class="QWidget" name="square12" native="true"/>
+             </item>
+             <item row="2" column="1">
+              <widget class="QWidget" name="square21" native="true"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QWidget" name="square10" native="true"/>
+             </item>
+             <item row="0" column="0">
+              <widget class="QWidget" name="square00" native="true"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QWidget" name="square01" native="true"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QWidget" name="square20" native="true"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QWidget" name="square22" native="true"/>
+             </item>
+             <item row="0" column="2">
+              <widget class="QWidget" name="square02" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_6">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="lineWidth">
+          <number>5</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_33" native="true">
+         <layout class="QGridLayout" name="gridLayout_5">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="2">
+           <widget class="QWidget" name="widget_34" native="true">
+            <layout class="QGridLayout" name="gridLayout_6">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QWidget" name="square33" native="true"/>
+             </item>
+             <item row="0" column="2">
+              <widget class="QWidget" name="square35" native="true"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QWidget" name="square34" native="true"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QWidget" name="square43" native="true"/>
+             </item>
+             <item row="1" column="1">
+              <widget class="QWidget" name="square44" native="true"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QWidget" name="square53" native="true"/>
+             </item>
+             <item row="1" column="2">
+              <widget class="QWidget" name="square45" native="true"/>
+             </item>
+             <item row="2" column="1">
+              <widget class="QWidget" name="square54" native="true"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QWidget" name="square55" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QWidget" name="widget_44" native="true">
+            <layout class="QGridLayout" name="gridLayout_7">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QWidget" name="square30" native="true"/>
+             </item>
+             <item row="0" column="2">
+              <widget class="QWidget" name="square32" native="true"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QWidget" name="square31" native="true"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QWidget" name="square40" native="true"/>
+             </item>
+             <item row="1" column="1">
+              <widget class="QWidget" name="square41" native="true"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QWidget" name="square50" native="true"/>
+             </item>
+             <item row="1" column="2">
+              <widget class="QWidget" name="square42" native="true"/>
+             </item>
+             <item row="2" column="1">
+              <widget class="QWidget" name="square51" native="true"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QWidget" name="square52" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="Line" name="line_4">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="lineWidth">
+             <number>5</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="Line" name="line_5">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="lineWidth">
+             <number>5</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QWidget" name="widget_54" native="true">
+            <layout class="QGridLayout" name="gridLayout_8">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QWidget" name="square36" native="true"/>
+             </item>
+             <item row="0" column="2">
+              <widget class="QWidget" name="square38" native="true"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QWidget" name="square37" native="true"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QWidget" name="square46" native="true"/>
+             </item>
+             <item row="1" column="1">
+              <widget class="QWidget" name="square47" native="true"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QWidget" name="square56" native="true"/>
+             </item>
+             <item row="1" column="2">
+              <widget class="QWidget" name="square48" native="true"/>
+             </item>
+             <item row="2" column="1">
+              <widget class="QWidget" name="square57" native="true"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QWidget" name="square58" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_7">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="lineWidth">
+          <number>5</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_64" native="true">
+         <layout class="QGridLayout" name="gridLayout_9">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="2">
+           <widget class="QWidget" name="widget_65" native="true">
+            <layout class="QGridLayout" name="gridLayout_10">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QWidget" name="square63" native="true"/>
+             </item>
+             <item row="0" column="2">
+              <widget class="QWidget" name="square65" native="true"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QWidget" name="square64" native="true"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QWidget" name="square73" native="true"/>
+             </item>
+             <item row="1" column="1">
+              <widget class="QWidget" name="square74" native="true"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QWidget" name="square83" native="true"/>
+             </item>
+             <item row="1" column="2">
+              <widget class="QWidget" name="square75" native="true"/>
+             </item>
+             <item row="2" column="1">
+              <widget class="QWidget" name="square84" native="true"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QWidget" name="square85" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QWidget" name="widget_75" native="true">
+            <layout class="QGridLayout" name="gridLayout_11">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QWidget" name="square60" native="true"/>
+             </item>
+             <item row="0" column="2">
+              <widget class="QWidget" name="square62" native="true"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QWidget" name="square61" native="true"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QWidget" name="square70" native="true"/>
+             </item>
+             <item row="1" column="1">
+              <widget class="QWidget" name="square71" native="true"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QWidget" name="square80" native="true"/>
+             </item>
+             <item row="1" column="2">
+              <widget class="QWidget" name="square72" native="true"/>
+             </item>
+             <item row="2" column="1">
+              <widget class="QWidget" name="square81" native="true"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QWidget" name="square82" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="Line" name="line_8">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="lineWidth">
+             <number>5</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="Line" name="line_9">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="lineWidth">
+             <number>5</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QWidget" name="widget_85" native="true">
+            <layout class="QGridLayout" name="gridLayout_12">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QWidget" name="square66" native="true"/>
+             </item>
+             <item row="0" column="2">
+              <widget class="QWidget" name="square68" native="true"/>
+             </item>
+             <item row="0" column="1">
+              <widget class="QWidget" name="square67" native="true"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QWidget" name="square76" native="true"/>
+             </item>
+             <item row="1" column="1">
+              <widget class="QWidget" name="square77" native="true"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QWidget" name="square86" native="true"/>
+             </item>
+             <item row="1" column="2">
+              <widget class="QWidget" name="square78" native="true"/>
+             </item>
+             <item row="2" column="1">
+              <widget class="QWidget" name="square87" native="true"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QWidget" name="square88" native="true"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>500</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuGame_Options">
+    <property name="title">
+     <string>Game Options</string>
+    </property>
+    <addaction name="actionNew_Game"/>
+   </widget>
+   <addaction name="menuGame_Options"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew_Game">
+   <property name="text">
+    <string>New Game</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
