@@ -1,10 +1,12 @@
 import sys
+from turtle import update
 import pandas as pd
 import numpy as np
-from PySide6 import QtCore, QtWidgets, QtGui
+from PySide6 import QtCore, QtWidgets, QtGui, QtTest
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile, QObject
 import sudokuSolver
+import time
 
 class SudokuSquare(QtWidgets.QPushButton):
 
@@ -38,7 +40,7 @@ class SudokuSquare(QtWidgets.QPushButton):
         else:
             self.text.setText("")
     
-    def updateBoard(self, game):
+    def updateSquare(self, game):
         self.game = game
         self.setValue(self.game[self.index])
 
@@ -49,11 +51,14 @@ class SudokuSquare(QtWidgets.QPushButton):
 
 
 class MyWidget(QObject):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent):
+        super(MyWidget, self).__init__(parent)
         self.board = []
+        self.running = False
         self.selected = None
+        self.parent = parent 
         self.solver = sudokuSolver.Solver()
+        self.timer = QtTest.QTest()
 
         self.boardLayout = QtWidgets.QGridLayout()
         self.toolBar = QtWidgets.QToolBar()
@@ -63,7 +68,8 @@ class MyWidget(QObject):
         self.ui = loader.load(mainUIFile)
         
 
-        data = pd.read_csv("data/sudoku.csv", nrows=1)
+        index = np.random.randint(1000)
+        data = pd.read_csv("data/sudoku.csv", skiprows = index, nrows=1, names= ["puzzle", "answer"])
         self.game = sudokuSolver.convertStringToBoard(data["puzzle"][0])
 
 
@@ -80,17 +86,32 @@ class MyWidget(QObject):
 
         
         self.ui.actionNew_Game.triggered.connect(self.newGame)
+        self.ui.actionSolver_DFS.triggered.connect(lambda : self.solveGame(self.solver.DFS))
+        self.ui.actionSolver_BFS.triggered.connect(lambda : self.solveGame(self.solver.BFS))
 
         self.ui.widget.setLayout(self.boardLayout)
         self.ui.centralwidget.installEventFilter(self)
+        
     
     def newGame(self):
         index = np.random.randint(1000)
         data = pd.read_csv("data/sudoku.csv", skiprows = index, nrows=1, names= ["puzzle", "answer"])
         self.game = sudokuSolver.convertStringToBoard(data["puzzle"][0])
+        self.updateBoard(self.game)
+        
+    
+    def updateBoard(self, board):
         for row in self.board:
             for square in row:
-                square.updateBoard(self.game)
+                square.updateSquare(board)
+                
+    
+    def solveGame(self, searchType):
+        self.solver.solveBoard(self.game, searchType)
+        for board in self.solver.pastBoards:
+            self.updateBoard(board)
+            self.timer.qWait(10)
+            
     
     def childClicked(self, selected):
         if self.selected != None:
@@ -104,14 +125,14 @@ class MyWidget(QObject):
                 self.selected.setValue(event.key() - 48)
                 # !!!
                 print(self.solver.checkBoard(self.game))
+                print(self.solver.gameComplete(self.game))
                 return True
         return super(MyWidget, self).eventFilter(widget, event)
         
 
-
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
-    widget = MyWidget()
+    widget = MyWidget(app)
     widget.ui.show()
     sys.exit(app.exec())
     

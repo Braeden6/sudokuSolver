@@ -67,7 +67,7 @@ class Solver():
     '''
     def gameComplete(self, board):
         indexes = np.where(board == 0)
-        return len(indexes[0]) != 0
+        return len(indexes[0]) == 0
 
     '''
     EFFECTS: takes list of boards remove one at index location
@@ -76,6 +76,7 @@ class Solver():
     '''
     def getNextBoards(self, bst, index):
         board = bst.pop(index)
+        self.pastBoards.append(np.copy(board))
         index = self.findZero(board)
         for i in range(1,10):
             board[index] = i
@@ -87,13 +88,16 @@ class Solver():
     EFFECTS: solves given board using either BFS or DFS
     '''
     def solveBoard(self, board, searchType):
+        self.pastBoards = [np.copy(board)]
         bst = [np.copy(board)]
         if searchType == self.DFS:
-            while(self.gameComplete(bst[len(bst) - 1])):
+            while(not self.gameComplete(bst[len(bst) - 1])):
                 bst = self.getNextBoards(bst, len(bst) - 1)
+            self.pastBoards.append(np.copy(bst[len(bst) - 1]))  
         if searchType == self.BFS:
-            while(self.gameComplete(bst[0])):
+            while(not self.gameComplete(bst[0])):
                 bst = self.getNextBoards(bst, 0)
+            self.pastBoards.append(np.copy(bst[0]))  
         return bst[len(bst) - 1]
 
 

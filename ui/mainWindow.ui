@@ -18,6 +18,21 @@
     <item>
      <widget class="QWidget" name="widget" native="true">
       <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QWidget" name="widget_32" native="true">
          <layout class="QGridLayout" name="gridLayout_4">
@@ -636,6 +651,8 @@
      <string>Game Options</string>
     </property>
     <addaction name="actionNew_Game"/>
+    <addaction name="actionSolver_DFS"/>
+    <addaction name="actionSolver_BFS"/>
    </widget>
    <addaction name="menuGame_Options"/>
   </widget>
@@ -643,6 +660,16 @@
   <action name="actionNew_Game">
    <property name="text">
     <string>New Game</string>
+   </property>
+  </action>
+  <action name="actionSolver_DFS">
+   <property name="text">
+    <string>Solver DFS</string>
+   </property>
+  </action>
+  <action name="actionSolver_BFS">
+   <property name="text">
+    <string>Solver BFS</string>
    </property>
   </action>
  </widget>
