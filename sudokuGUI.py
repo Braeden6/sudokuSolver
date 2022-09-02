@@ -54,6 +54,7 @@ class MyWidget(QObject):
     def __init__(self, parent):
         super(MyWidget, self).__init__(parent)
         self.board = []
+        self.pastMoves = []
         self.running = False
         self.selected = None
         self.parent = parent 
@@ -82,37 +83,46 @@ class MyWidget(QObject):
                 self.board[i].append(SudokuSquare((i,j), self.game, square, self))
                 newLayout.addWidget(self.board[i][j])
                 square.setLayout(newLayout)
-                
+        self.newGame()      
 
         
         self.ui.actionNew_Game.triggered.connect(self.newGame)
-        self.ui.actionSolver_DFS.triggered.connect(lambda : self.solveGame(self.solver.DFS))
-        self.ui.actionSolver_BFS.triggered.connect(lambda : self.solveGame(self.solver.BFS))
+        def solveGameDFS():
+            self.solver.searchType = self.solver.DFS
+            self.solveGame()
+        self.ui.actionSolver_DFS.triggered.connect(solveGameDFS)
+        def solveGameBFS():
+            self.solver.searchType = self.solver.BFS
+            self.solveGame()
+        self.ui.actionSolver_BFS.triggered.connect(solveGameBFS)
 
         self.ui.widget.setLayout(self.boardLayout)
         self.ui.centralwidget.installEventFilter(self)
-        
+        self.ui.pushButtonUndo.clicked.connect(self.undoMove)
+    
+    def undoMove(self):
+        if len(self.pastMoves) != 0:
+            square, num = self.pastMoves.pop()
+            square.setValue(num)
     
     def newGame(self):
         index = np.random.randint(1000)
         data = pd.read_csv("data/sudoku.csv", skiprows = index, nrows=1, names= ["puzzle", "answer"])
         self.game = sudokuSolver.convertStringToBoard(data["puzzle"][0])
         self.updateBoard(self.game)
+        self.pastMoves = []
         
-    
     def updateBoard(self, board):
         for row in self.board:
             for square in row:
                 square.updateSquare(board)
                 
-    
-    def solveGame(self, searchType):
-        self.solver.solveBoard(self.game, searchType)
+    def solveGame(self):
+        self.solver.solveBoard(self.game)
         for board in self.solver.pastBoards:
             self.updateBoard(board)
             self.timer.qWait(10)
             
-    
     def childClicked(self, selected):
         if self.selected != None:
             self.selected.setStyleSheet("background-color: white;")
@@ -121,7 +131,8 @@ class MyWidget(QObject):
     
     def eventFilter(self, widget, event):
         if (event.type() == QtCore.QEvent.KeyPress):
-            if (event.key() > 47 and event.key() < 58):
+            if (event.key() > 48 and event.key() < 58 and self.selected != None):
+                self.pastMoves.append((self.selected, self.selected.game[self.selected.index]))
                 self.selected.setValue(event.key() - 48)
                 # !!!
                 print(self.solver.checkBoard(self.game))
