@@ -47,8 +47,6 @@ class SudokuSquare(QtWidgets.QPushButton):
     def getIndex(self):
         return self.index
     
-    
-
 
 class MyWidget(QObject):
     def __init__(self, parent):
@@ -67,6 +65,8 @@ class MyWidget(QObject):
         mainUIFile = QFile('ui/mainWindow.ui')
         loader = QUiLoader()
         self.ui = loader.load(mainUIFile)
+
+        self.ui.stackedWidget.setCurrentIndex(0)
         
 
         index = np.random.randint(1000)
@@ -87,19 +87,36 @@ class MyWidget(QObject):
 
         
         self.ui.actionNew_Game.triggered.connect(self.newGame)
-        def solveGameDFS():
-            self.solver.searchType = self.solver.DFS
-            self.solveGame()
-        self.ui.actionSolver_DFS.triggered.connect(solveGameDFS)
-        def solveGameBFS():
-            self.solver.searchType = self.solver.BFS
-            self.solveGame()
-        self.ui.actionSolver_BFS.triggered.connect(solveGameBFS)
+        self.ui.actionSolver.triggered.connect(self.openSolverBuilder)
 
-        self.ui.widget.setLayout(self.boardLayout)
-        self.ui.centralwidget.installEventFilter(self)
+        self.ui.widgetBoard.setLayout(self.boardLayout)
+        self.ui.mainWidget.installEventFilter(self)
         self.ui.pushButtonUndo.clicked.connect(self.undoMove)
+        self.ui.pushButtonSolveGame.clicked.connect(self.solveGame)
     
+    def openSolverBuilder(self):
+        self.ui.actionNew_Game.setEnabled(False)
+        self.ui.actionSolver_BFS.setEnabled(False)
+        self.ui.actionSolver_DFS.setEnabled(False)
+        self.ui.stackedWidget.setCurrentIndex(1)
+    
+    def openMainWindow(self):
+        self.ui.actionNew_Game.setEnabled(True)
+        self.ui.actionSolver_BFS.setEnabled(True)
+        self.ui.actionSolver_DFS.setEnabled(True)
+        self.ui.stackedWidget.setCurrentIndex(0)
+    
+    def solveGame(self):
+        self.solver = sudokuSolver.Solver(random=0.0, 
+                                            findNextPriority=self.ui.comboBoxPriority.currentIndex(), 
+                                            searchType=self.ui.comboBoxSearchType.currentIndex(), 
+                                            enableHeuristics=self.ui.checkBoxHeuristics.isChecked())
+        self.solver.solveBoard(self.game)
+        self.openMainWindow()
+        for board in self.solver.pastBoards:
+            self.updateBoard(board)
+            self.timer.qWait(10)
+
     def updateLeftNumberDisplay(self):
         for i in range(1,10):
             label = getattr(self.ui, "labelLeft" + str(i))
@@ -108,7 +125,6 @@ class MyWidget(QObject):
             else:
                 label.setText(str(i))
 
-    
     def updateUI(self, value, square = None):
         if square == None:
             square = self.selected
@@ -133,12 +149,7 @@ class MyWidget(QObject):
         for row in self.board:
             for square in row:
                 square.updateSquare(board)
-                
-    def solveGame(self):
-        self.solver.solveBoard(self.game)
-        for board in self.solver.pastBoards:
-            self.updateBoard(board)
-            self.timer.qWait(10)
+
 
     def updateSelectedDisplay(self, cellColour = "white", rowColColour = "white"):
         if self.selected != None:

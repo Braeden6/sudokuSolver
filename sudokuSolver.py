@@ -89,7 +89,7 @@ class Solver():
         list = []
         for i in range(len(indexes[0])):
             colRowSectionCells = np.concatenate((board[:,indexes[1][i]], board[indexes[0][i],:],
-                                        solver.getBoardSection(board,int(indexes[0][i]/3), int(indexes[1][i]/3))))
+                                        self.getBoardSection(board,int(indexes[0][i]/3), int(indexes[1][i]/3))))
             colRowSectionCells = colRowSectionCells[colRowSectionCells != 0]
             list.append(colRowSectionCells)
         return (list, indexes)
@@ -115,12 +115,12 @@ class Solver():
         sections = []
         for j in range(3):
             for i in range(3):
-                sections.append(func(solver.getBoardSection(board, i, j)))
+                sections.append(func(self.getBoardSection(board, i, j)))
         return sections
 
     def getPossibleLocations(self, board):
         diff = lambda section: np.setdiff1d(range(1,10), section)
-        sectionsDiffs = solver.getSections(board, diff)
+        sectionsDiffs = self.getSections(board, diff)
         indexes = np.where(board == 0)
         possibleLocations = []
         for i in range(3):
@@ -134,17 +134,19 @@ class Solver():
                         if i*3 <= indexI < 3 + i*3 and j*3 <= indexJ < 3 + j*3:
                             newBoard = np.copy(board)
                             newBoard[indexI][indexJ] = num
-                            if solver.checkBoard(newBoard):
+                            if self.checkBoard(newBoard):
                                 availableSpots.append((indexI,indexJ))
                     possibleLocations.append((num, availableSpots))
         return possibleLocations
 
     def fillBoard(self, board):
         # !!! loop fill board? how often can it solve boards?
-        possibleLocations = solver.getPossibleLocations(board)
+        possibleLocations = self.getPossibleLocations(board)
         for locations in possibleLocations:
             if len(locations[1]) == 1:
+                self.pastBoards.append(np.copy(board))
                 board[locations[1][0][0]][locations[1][0][1]] = locations[0]
+
 
     '''
     EFFECTS: checks if board in complete and has a value in each
@@ -201,14 +203,14 @@ def getResults(data, solver, solverType):
 
 
 if __name__ == "__main__":
-    AMOUNT = 50
+    AMOUNT = 20
     data = pd.read_csv("data/sudoku.csv", nrows=AMOUNT)
     
-    solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.DFS)
-    getResults(data, solver, "Depth First Search Solver with First Zero Search:" )
+    #solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.DFS)
+    #getResults(data, solver, "Depth First Search Solver with First Zero Search:" )
 
-    solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.BFS)
-    getResults(data, solver, "Breadth First Search Solver with First Zero Search:" )
+    #solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.BFS)
+    #getResults(data, solver, "Breadth First Search Solver with First Zero Search:" )
 
     solver = Solver(random=0.0, findNextPriority= Solver.MOST_NEIGHBOURING, searchType= Solver.DFS)
     getResults(data, solver, "Depth First Search Solver with Most Neighbouring Numbers:" )
