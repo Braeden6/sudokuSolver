@@ -73,7 +73,6 @@ class MyWidget(QObject):
         data = pd.read_csv("data/sudoku.csv", skiprows = index, nrows=1, names= ["puzzle", "answer"])
         self.game = sudokuSolver.convertStringToBoard(data["puzzle"][0])
 
-
         for i in range(9):
             self.board.append([])
             for j in range(9):
@@ -83,6 +82,7 @@ class MyWidget(QObject):
                 self.board[i].append(SudokuSquare((i,j), self.game, square, self))
                 newLayout.addWidget(self.board[i][j])
                 square.setLayout(newLayout)
+        self.board = np.array(self.board)
         self.newGame()      
 
         
@@ -100,16 +100,33 @@ class MyWidget(QObject):
         self.ui.centralwidget.installEventFilter(self)
         self.ui.pushButtonUndo.clicked.connect(self.undoMove)
     
+    def updateLeftNumberDisplay(self):
+        for i in range(1,10):
+            label = getattr(self.ui, "labelLeft" + str(i))
+            if np.count_nonzero(self.game == i) == 9:
+                label.setText("")
+            else:
+                label.setText(str(i))
+
+    
+    def updateUI(self, value, square = None):
+        if square == None:
+            square = self.selected
+        square.setValue(value)
+        self.updateLeftNumberDisplay()
+        
+    
     def undoMove(self):
         if len(self.pastMoves) != 0:
             square, num = self.pastMoves.pop()
-            square.setValue(num)
+            self.updateUI(num, square)
     
     def newGame(self):
         index = np.random.randint(1000)
         data = pd.read_csv("data/sudoku.csv", skiprows = index, nrows=1, names= ["puzzle", "answer"])
         self.game = sudokuSolver.convertStringToBoard(data["puzzle"][0])
         self.updateBoard(self.game)
+        self.updateLeftNumberDisplay()
         self.pastMoves = []
         
     def updateBoard(self, board):
@@ -122,19 +139,25 @@ class MyWidget(QObject):
         for board in self.solver.pastBoards:
             self.updateBoard(board)
             self.timer.qWait(10)
-            
-    def childClicked(self, selected):
+
+    def updateSelectedDisplay(self, cellColour = "white", rowColColour = "white"):
         if self.selected != None:
-            self.selected.setStyleSheet("background-color: white;")
+            for square in self.board[:,self.selected.index[1]]:
+                square.setStyleSheet("background-color: " + rowColColour + ";")
+            for square in self.board[self.selected.index[0],:]:
+                square.setStyleSheet("background-color: " + rowColColour + ";")
+            self.selected.setStyleSheet("background-color: " + cellColour + ";")
+    
+    def childClicked(self, selected):
+        self.updateSelectedDisplay()
         self.selected = selected
-        selected.setStyleSheet("background-color: grey;")
+        self.updateSelectedDisplay("grey" , "light grey")        
     
     def eventFilter(self, widget, event):
         if (event.type() == QtCore.QEvent.KeyPress):
-            if (event.key() > 48 and event.key() < 58 and self.selected != None):
+            if (event.key() > 48 and event.key() < 58 and self.selected != None and self.selected.game[self.selected.index] == 0):
                 self.pastMoves.append((self.selected, self.selected.game[self.selected.index]))
-                self.selected.setValue(event.key() - 48)
-                # !!!
+                self.updateUI(event.key() - 48)
                 print(self.solver.checkBoard(self.game))
                 print(self.solver.gameComplete(self.game))
                 return True
