@@ -146,6 +146,7 @@ class Solver():
             if len(locations[1]) == 1:
                 self.pastBoards.append(np.copy(board))
                 board[locations[1][0][0]][locations[1][0][1]] = locations[0]
+        return board
 
 
     '''
@@ -196,14 +197,14 @@ class Solver():
 def getResults(data, solver, solverType):
     start_time = time.time()
     for i in range(len(data)):
-        solver.solveBoard(convertStringToBoard(data["puzzle"][i]))
+        bst = solver.solveBoard(convertStringToBoard(data["puzzle"][i]))
     end_time = time.time()
     print(solverType)
     print("Average Completion Time:",(end_time - start_time)/AMOUNT)
 
 
 if __name__ == "__main__":
-    AMOUNT = 20
+    AMOUNT = 1
     data = pd.read_csv("data/sudoku.csv", nrows=AMOUNT)
     
     #solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.DFS)
@@ -212,14 +213,14 @@ if __name__ == "__main__":
     #solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.BFS)
     #getResults(data, solver, "Breadth First Search Solver with First Zero Search:" )
 
-    solver = Solver(random=0.0, findNextPriority= Solver.MOST_NEIGHBOURING, searchType= Solver.DFS)
-    getResults(data, solver, "Depth First Search Solver with Most Neighbouring Numbers:" )
+    #solver = Solver(random=0.0, findNextPriority= Solver.MOST_NEIGHBOURING, searchType= Solver.DFS)
+    #getResults(data, solver, "Depth First Search Solver with Most Neighbouring Numbers:" )
 
-    solver = Solver(random=0.0, findNextPriority= Solver.MOST_UNIQUE_NEIGHBOURING, searchType= Solver.DFS)
-    getResults(data, solver, "Depth First Search Solver with Most Unique Neighbouring Numbers:" )
+    #solver = Solver(random=0.0, findNextPriority= Solver.MOST_UNIQUE_NEIGHBOURING, searchType= Solver.DFS)
+    #getResults(data, solver, "Depth First Search Solver with Most Unique Neighbouring Numbers:" )
 
-    solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.DFS, enableHeuristics=True)
-    getResults(data, solver, "Depth First Search Solver with First Zero Search and Heuristics:" )
+    #solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.DFS, enableHeuristics=True)
+    #getResults(data, solver, "Depth First Search Solver with First Zero Search and Heuristics:" )
 
     solver = Solver(random=0.0, findNextPriority= Solver.MOST_NEIGHBOURING, searchType= Solver.DFS, enableHeuristics=True)
     getResults(data, solver, "Depth First Search Solver with Most Neighbouring Numbers and Heuristics:" )

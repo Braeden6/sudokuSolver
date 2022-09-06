@@ -751,6 +751,9 @@
         <item>
          <widget class="QWidget" name="widget" native="true">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
            <item>
             <widget class="QLabel" name="labelSearchType">
              <property name="text">
@@ -784,6 +787,9 @@
         <item>
          <widget class="QWidget" name="widget_3" native="true">
           <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
            <item>
             <widget class="QLabel" name="label">
              <property name="text">
@@ -816,6 +822,9 @@
         <item>
          <widget class="QWidget" name="widget_4" native="true">
           <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
            <item>
             <spacer name="horizontalSpacer_2">
              <property name="orientation">
@@ -843,6 +852,66 @@
          <widget class="QPushButton" name="pushButtonSolveGame">
           <property name="text">
            <string>Solve</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelSolverResults">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widgetTimeDelay" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="labelSliderDetail">
+             <property name="text">
+              <string>Time Between Boards (Milliseconds)</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="horizontalSliderTimeDelay">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
+             <property name="value">
+              <number>10</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelSliderValue">
+             <property name="text">
+              <string>1 ms</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelEstimatedTime">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonDisplaySolution">
+          <property name="text">
+           <string>Display Solution</string>
           </property>
          </widget>
         </item>

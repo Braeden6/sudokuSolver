@@ -67,6 +67,11 @@ class MyWidget(QObject):
         self.ui = loader.load(mainUIFile)
 
         self.ui.stackedWidget.setCurrentIndex(0)
+
+        self.displayGetTimeDelay()
+
+        
+
         
 
         index = np.random.randint(1000)
@@ -93,6 +98,8 @@ class MyWidget(QObject):
         self.ui.mainWidget.installEventFilter(self)
         self.ui.pushButtonUndo.clicked.connect(self.undoMove)
         self.ui.pushButtonSolveGame.clicked.connect(self.solveGame)
+        self.ui.horizontalSliderTimeDelay.valueChanged.connect(self.sliderUpdateLabel)
+        self.ui.pushButtonDisplaySolution.clicked.connect(lambda: self.displaySolution(self.ui.horizontalSliderTimeDelay.value()))
     
     def openSolverBuilder(self):
         self.ui.actionNew_Game.setEnabled(False)
@@ -105,17 +112,47 @@ class MyWidget(QObject):
         self.ui.actionSolver_BFS.setEnabled(True)
         self.ui.actionSolver_DFS.setEnabled(True)
         self.ui.stackedWidget.setCurrentIndex(0)
-    
+
+    def displayGetTimeDelay(self, state = False):
+        if state:
+            self.ui.labelSolverResults.show()
+            self.ui.widgetTimeDelay.show()
+            self.ui.labelEstimatedTime.show()
+            self.ui.pushButtonDisplaySolution.show()
+            self.sliderUpdateLabel(self.ui.horizontalSliderTimeDelay.value())
+
+        else:
+            self.ui.labelSolverResults.hide()
+            self.ui.labelSolverResults.setText("")
+            self.ui.widgetTimeDelay.hide()
+            self.ui.labelEstimatedTime.hide()
+            self.ui.labelEstimatedTime.setText("")
+            self.ui.pushButtonDisplaySolution.hide()
+            self.ui.horizontalSliderTimeDelay.setValue(10)
+
+    def sliderUpdateLabel(self, value = None):
+        self.ui.labelSliderValue.setText(str(self.ui.horizontalSliderTimeDelay.value()) + " ms")
+        self.ui.labelEstimatedTime.setText("Estimated Display Time: " 
+                + str(len(self.solver.pastBoards) * self.ui.horizontalSliderTimeDelay.value()/1000) + " seconds")
+
     def solveGame(self):
         self.solver = sudokuSolver.Solver(random=0.0, 
                                             findNextPriority=self.ui.comboBoxPriority.currentIndex(), 
                                             searchType=self.ui.comboBoxSearchType.currentIndex(), 
                                             enableHeuristics=self.ui.checkBoxHeuristics.isChecked())
+        start_time = time.time()
         self.solver.solveBoard(self.game)
+        end_time = time.time()
+        self.ui.labelSolverResults.setText("Solver Done. Time: " + str("{:1.3f}".format(end_time - start_time)) 
+                                        + " Boards Used: " + str((len(self.solver.pastBoards))))
+        self.displayGetTimeDelay(True)
+
+    def displaySolution(self, interval = 10):
         self.openMainWindow()
+        self.displayGetTimeDelay()
         for board in self.solver.pastBoards:
             self.updateBoard(board)
-            self.timer.qWait(10)
+            self.timer.qWait(interval)
 
     def updateLeftNumberDisplay(self):
         for i in range(1,10):
