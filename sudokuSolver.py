@@ -11,7 +11,7 @@ First index is top left, left to right then top to bottom.
 REQUIRES: input must be string, only digits 0-9, and length of 81
 '''
 def convertStringToBoard(string):
-    if isinstance(string, str) and len(string) != 81 and not string.isdigit():
+    if not isinstance(string, str) or len(string) != 81 or not string.isdigit():
         raise Exception("Error with input string", string)
     board = np.zeros((9,9))
     array = [int(x) for x in string]
@@ -207,20 +207,20 @@ if __name__ == "__main__":
     AMOUNT = 1
     data = pd.read_csv("data/sudoku.csv", nrows=AMOUNT)
     
-    #solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.DFS)
-    #getResults(data, solver, "Depth First Search Solver with First Zero Search:" )
+    solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.DFS)
+    getResults(data, solver, "Depth First Search Solver with First Zero Search:" )
 
-    #solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.BFS)
-    #getResults(data, solver, "Breadth First Search Solver with First Zero Search:" )
+    solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.BFS)
+    getResults(data, solver, "Breadth First Search Solver with First Zero Search:" )
 
-    #solver = Solver(random=0.0, findNextPriority= Solver.MOST_NEIGHBOURING, searchType= Solver.DFS)
-    #getResults(data, solver, "Depth First Search Solver with Most Neighbouring Numbers:" )
+    solver = Solver(random=0.0, findNextPriority= Solver.MOST_NEIGHBOURING, searchType= Solver.DFS)
+    getResults(data, solver, "Depth First Search Solver with Most Neighbouring Numbers:" )
 
-    #solver = Solver(random=0.0, findNextPriority= Solver.MOST_UNIQUE_NEIGHBOURING, searchType= Solver.DFS)
-    #getResults(data, solver, "Depth First Search Solver with Most Unique Neighbouring Numbers:" )
+    solver = Solver(random=0.0, findNextPriority= Solver.MOST_UNIQUE_NEIGHBOURING, searchType= Solver.DFS)
+    getResults(data, solver, "Depth First Search Solver with Most Unique Neighbouring Numbers:" )
 
-    #solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.DFS, enableHeuristics=True)
-    #getResults(data, solver, "Depth First Search Solver with First Zero Search and Heuristics:" )
+    solver = Solver(random=0.0, findNextPriority= Solver.FIRST_ZERO, searchType= Solver.DFS, enableHeuristics=True)
+    getResults(data, solver, "Depth First Search Solver with First Zero Search and Heuristics:" )
 
     solver = Solver(random=0.0, findNextPriority= Solver.MOST_NEIGHBOURING, searchType= Solver.DFS, enableHeuristics=True)
     getResults(data, solver, "Depth First Search Solver with Most Neighbouring Numbers and Heuristics:" )

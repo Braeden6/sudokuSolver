@@ -7,5 +7,12 @@ Currently Implemented:
 
 
 ## Instructions
-To run this you need to download: [9 Million Sudoku Puzzles](https://www.kaggle.com/datasets/rohanrao/sudoku/code?sort=votes)
+To run this you need to download: [9 Million Sudoku Puzzles](https://www.kaggle.com/datasets/rohanrao/sudoku?sort=votes)
 Add data folder to the root of the repo and put the downloaded csv in there.
+
+
+## Testing
+
+coverage run -m sudokuSolverTest
+
+coverage html (or) coverage report
